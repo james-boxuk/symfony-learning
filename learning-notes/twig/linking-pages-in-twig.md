@@ -1,4 +1,4 @@
-#Linking to Pages
+# Linking to Pages
 
 Instead of writing the link URLs by hand, you can use the `path()` function in twig to generate a URL based on the
 <a href="https://symfony.com/doc/current/routing.html#routing-creating-routes">routing configurations</a>.
