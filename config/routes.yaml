@@ -9,3 +9,7 @@ controllers:
 app_contact_form:
     path: /contact-form
     controller: App\Controller\ContactFormController::index
+
+index:
+    path: /
+    controller: App\Controller\IndexController::indexAction
