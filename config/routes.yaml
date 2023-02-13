@@ -10,6 +10,10 @@ app_contact_form:
     path: /contact-form
     controller: App\Controller\ContactFormController::index
 
-index:
+app_home:
     path: /
     controller: App\Controller\IndexController::indexAction
+    
+app_about:
+    path: /about
+    controller: App\Controller\AboutController::indexAction
