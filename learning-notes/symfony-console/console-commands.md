@@ -18,7 +18,7 @@ to show in this list.
 
 1. Clear Cache: `php bin/console cache:clear`
 
-2. New Controller (will need the bundle package): 
+2. New Controller (`composer require symfony/maker-bundle`): 
 `php bin/console make:controller <controller-name>`
 
 
