@@ -6,9 +6,9 @@ controllers:
 #     path: /lucky/number
 #     controller: App\Controller\LuckyNumberController::number
 
-app_contact_form:
-    path: /contact-form
-    controller: App\Controller\ContactFormController::index
+app_contact:
+    path: /contact
+    controller: App\Controller\ContactController::index
 
 app_home:
     path: /

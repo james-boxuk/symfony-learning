@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
   php:
+    container_name: symfony_app
     build:
       context: .
       target: app_php
