@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% set row_attr = {class: 'testing-class' } %}
 {% block body %}
  {{ form_start(form) }}
     {{ form_row(form.title) }}

@@ -71,6 +71,9 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 COPY --from=composer/composer:2-bin --link /composer /usr/bin/composer
 
+#install the latest node and npm
+RUN apk add --update nodejs npm
+
 # prevent the reinstallation of vendors at every changes in the source code
 COPY composer.* symfony.* ./
 RUN set -eux; \
