@@ -45,14 +45,6 @@ RUN set -eux; \
     ;
 
 ###> recipes ###
-###> doctrine/doctrine-bundle ###
-RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
-	docker-php-ext-install -j$(nproc) pdo_pgsql; \
-	apk add --no-cache --virtual .pgsql-rundeps so:libpq.so.5; \
-	apk del .pgsql-deps
-###< doctrine/doctrine-bundle ###
-###< recipes ###
-
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY --link docker/php/conf.d/app.ini $PHP_INI_DIR/conf.d/
 COPY --link docker/php/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/
@@ -104,7 +96,8 @@ RUN set -eux; \
 # Dev image
 FROM app_php AS app_php_dev
 
-ENV APP_ENV=dev XDEBUG_MODE=off
+# add below on same line as APP_ENV XDEBUG_MODE=off
+ENV APP_ENV=dev
 VOLUME /srv/app/var/
 
 RUN rm $PHP_INI_DIR/conf.d/app.prod.ini; \
@@ -113,8 +106,10 @@ RUN rm $PHP_INI_DIR/conf.d/app.prod.ini; \
 
 COPY --link docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
-RUN set -eux; \
-	install-php-extensions xdebug
+#RUN set -eux; \
+#	install-php-extensions xdebug
+
+RUN docker-php-ext-install pdo_mysql
 
 RUN rm -f .env.local.php
 
@@ -135,3 +130,5 @@ WORKDIR /srv/app
 COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
 COPY --from=app_php --link /srv/app/public public/
 COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
+EXPOSE 3306
