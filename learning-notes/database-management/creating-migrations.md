@@ -14,6 +14,11 @@ To run the migration we can use
 ```
 php bin/console doctrine:migrations:migrate
 ```
+# Auto Generated SQL
+When the migrations are created, if an `Entity` class is created and Doctrine will auto generate
+the SQL based on the annotations above the properties and class name.
+
+But we can also change the SQL to suit our needs.
 
 #Adding more fields
 

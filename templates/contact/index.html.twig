@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% set row_attr = {class: 'testing-class' } %}
 {% block body %}
- {{ form_start(form) }}
-    {{ form_row(form.title) }}
-    {{ form_end(form) }}
+ {{ form_start(form, {'action': path('app_contact')}) }}
+{{ form_end(form) }}
 {% endblock %}

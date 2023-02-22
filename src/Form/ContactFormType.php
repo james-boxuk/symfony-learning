@@ -36,6 +36,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('other', TextType::class, [
                 'label' => 'Other',
+                'required' => false,
                 'label_attr' => [
                     'class' => 'hidden title-other',
                 ],
