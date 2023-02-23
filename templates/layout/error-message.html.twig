@@ -1,0 +1,9 @@
+{% set errors = app.flashes('error') %}
+
+{% if errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in errors %}
+            {{ error }} </br>
+        {% endfor %}
+    </div>
+{% endif %}

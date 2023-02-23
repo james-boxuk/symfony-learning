@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -107,5 +109,14 @@ class Contact
     public function getMessage(): ?string
     {
         return $this->message;
+    }
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if ($this->title === 'other') {
+            $context->buildViolation('Need to specify a title, if other is selected')
+                ->addViolation();
+        }
     }
 }

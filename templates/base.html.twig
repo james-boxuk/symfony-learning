@@ -19,6 +19,10 @@
     <body>
         {% include './layout/header.html.twig' %}
         <div class="container">
+            {% block message %}
+                {% include 'layout/success-message.html.twig' %}
+                {% include 'layout/error-message.html.twig' %}
+            {% endblock %}
             {% block body %}
             {% endblock %}
         </div>

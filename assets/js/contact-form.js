@@ -20,4 +20,14 @@ function setContactForm() {
       });
     }
   });
+
+  contactForm.addEventListener('load', (e) => {
+    let selectedValue = e.target.value;
+    console.log('here');
+    if (selectedValue === 'other') {
+      otherTitles.forEach((item) => {
+        item.classList.remove('hidden');
+      });
+    }
+  });
 }

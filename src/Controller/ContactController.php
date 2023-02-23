@@ -9,14 +9,19 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ContactController extends AbstractController
 {
     private EntityManagerInterface $entityManager;
+    private ValidatorInterface $validator;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ValidatorInterface $validator
+    ) {
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
     public function index(Request $request): Response
@@ -27,6 +32,16 @@ class ContactController extends AbstractController
         );
 
         $form->handleRequest($request);
+        $errors = $this->validator->validate($form);
+
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $this->addFlash('error', $error->getMessage());
+            }
+
+            //return $this->redirectToRoute('app_contact');
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($form->getData());
