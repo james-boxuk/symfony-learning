@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Command\ContactCommand;
+use App\Entity\Contact;
 use App\Form\ContactFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +21,20 @@ class ContactController extends AbstractController
 
     public function index(Request $request): Response
     {
-        $form = $this->createForm(ContactFormType::class);
+        $form = $this->createForm(
+            ContactFormType::class,
+            new Contact()
+        );
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //map to contact entity before able to persist
-            $contact = $form->getData();
-            $this->entityManager->persist($contact);
+            $this->entityManager->persist($form->getData());
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'We\'ve received your message');
+
+            return $this->redirectToRoute('app_contact');
         }
 
         return $this->render('contact/index.html.twig', [
