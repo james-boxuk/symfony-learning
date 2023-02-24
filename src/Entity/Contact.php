@@ -114,7 +114,7 @@ class Contact
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context, $payload)
     {
-        if ($this->title === 'other') {
+        if ($this->title === 'other' && is_null($this->other)) {
             $context->buildViolation('Need to specify a title, if other is selected')
                 ->addViolation();
         }
