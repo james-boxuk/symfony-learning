@@ -18,3 +18,7 @@ app_home:
 app_about:
     path: /about
     controller: App\Controller\AboutController::indexAction
+    
+app_view_contact:
+    path: /view-contact-messages
+    controller: App\Controller\ViewContactController::indexAction

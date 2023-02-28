@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% set increment = 0 %}
+{% block body %}
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <td>
+                    #
+                </td>
+                <td>
+                    Title
+                </td>
+                <td>
+                    First Name
+                </td>
+                <td>
+                    Last Name
+                </td>
+                <td>
+                    Telephone
+                </td>
+                <td>
+                    Message
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                {% set increment = increment + 1 %}
+                <tr>
+                    <td>
+                        {{ increment }}
+                    </td>
+                    <td>
+                        {{ contact.title }}
+                    </td>
+                    <td>
+                        {{ contact.firstName }}
+                    </td>
+                    <td>
+                        {{ contact.lastName }}
+                    </td>
+                    <td>
+                        {{ contact.telephone }}
+                    </td>
+                    <td>
+                        {{ contact.message }}
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include 'paginator/paginator.html.twig' %}
+{% endblock %}
