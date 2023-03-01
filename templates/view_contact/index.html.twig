@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-{% set increment = 0 %}
 {% block body %}
     <table class="table table-bordered">
         <thead>
@@ -26,10 +25,11 @@
         </thead>
         <tbody>
             {% for contact in contacts %}
-                {% set increment = increment + 1 %}
                 <tr>
                     <td>
-                        {{ increment }}
+                        <a class="text-decoration-none" href="{{ path('app_manage_contact', {id: contact.id}) }}">
+                            {{ contact.id }}
+                        </a>
                     </td>
                     <td>
                         {{ contact.title }}
