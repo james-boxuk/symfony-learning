@@ -17,7 +17,7 @@ The other query builder methods cannot distinguish between user and developer in
 subject to the possibility of SQL injection.
 
 To work with the QueryBuilder you should never pass user input to any of the methods
-and use the place holder `?` or `:name` syntax in combination with 
+and use the placeholder `?` or `:name` syntax in combination with 
 `$queryBuilder->setParameter($placeholder, $value)` instead.
 
 
@@ -32,3 +32,38 @@ $queryBuilder
 ;
 ```
 
+# Building a Query
+
+The QueryBuilder supports building of `SELECT`, `INSERT`, `UPDATE` and `DELETE` queries.
+
+# `select()` Method
+
+To start with the select query, we start by invoking the `select()` method of the QueryBuilder:
+
+```
+$queryBuilder
+->select('id','name')
+->from('users');
+```
+
+to select `*` you would need to add an alias into the `select()` method after adding
+a second parameter to of `alias`, the alias can then be used to select `*` from that table.
+
+```
+    $queryBuilder->select('u')->from('users', 'u');
+```
+
+# `update()`, `insert()` and `delete()` methods:
+
+With the following methods we pass the `$tableName` into the methods
+
+```
+//update method
+$queryBuilder->update('users');
+
+//delete method
+$queryBuilder->delete('users');
+
+//insert method
+$queryBuilder->insert('users');
+```
