@@ -10,7 +10,13 @@
         {{ form_row(form.email, {disabled: true}) }}
         {{ form_row(form.telephone, {disabled: true}) }}
         {{ form_row(form.message, {disabled: true}) }}
-        {{ form_row(form.admin_message) }}
-        {{ form_row(form.submit, {label: 'Send Reply'}) }}
-    {{ form_end(form) }}
+        {{ form_row(form.admin_message, {disabled: adminReplied ? 'disabled' : ''}) }}
+
+        {% if adminReplied != 1 %}
+            {{ form_row(form.submit, {label: 'Send Reply'}) }}
+        {% else %}
+            <a href="{{ path('app_view_contact') }}" class="btn btn-primary">Go Back</a>
+        {% endif %}
+
+    {{ form_end(form, {render_rest: false}) }}
 {% endblock %}

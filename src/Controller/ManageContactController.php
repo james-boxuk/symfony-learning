@@ -42,7 +42,8 @@ class ManageContactController extends AbstractController
 
         return $this->render('manage_contact/index.html.twig', [
             'title' => 'Manage Contact',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'adminReplied' => $contactDetails->getAdminReplied(),
         ]);
     }
 }

@@ -16,10 +16,16 @@
                     Last Name
                 </td>
                 <td>
+                    Email Address
+                </td>
+                <td>
                     Telephone
                 </td>
                 <td>
                     Message
+                </td>
+                <td>
+                    Admin Replied
                 </td>
             </tr>
         </thead>
@@ -41,10 +47,16 @@
                         {{ contact.lastName }}
                     </td>
                     <td>
+                        {{ contact.email ?? 'No Email' }}
+                    </td>
+                    <td>
                         {{ contact.telephone }}
                     </td>
                     <td>
                         {{ contact.message }}
+                    </td>
+                    <td>
+                        {{ (contact.adminReplied == 1) ? "Yes" : 'No' }}
                     </td>
                 </tr>
 
