@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 {% set row_attr = {class: 'testing-class' } %}
 {% block body %}
- {{ form_start(form, {'action': path('app_contact')}) }}
-{{ form_end(form) }}
+        {{ form_start(form, {'action': path('app_contact')}) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.other) }}
+            {{ form_row(form.first_name) }}
+            {{ form_row(form.last_name) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.telephone) }}
+            {{ form_row(form.message) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form, {render_rest: false}) }}
 {% endblock %}

@@ -27,11 +27,20 @@ class Contact
     #[ORM\Column(type:"string", nullable: true)]
     private ?string $lastName = null;
 
+    #[ORM\Column(type:"string", nullable: true)]
+    private ?string $email = null;
+
     #[ORM\Column(type: "string", length: 11, nullable: true)]
     private ?string $telephone = null;
 
     #[ORM\Column(type: "string", nullable: true)]
     private ?string $message = null;
+
+    #[ORM\Column(type:"string", nullable: true)]
+    private ?string $adminMessage = null;
+
+    #[ORM\Column(type: "integer", options: ["default" => 0])]
+    private ?int $adminReplied = 0;
 
     public function setId(?int $id)
     {
@@ -61,7 +70,6 @@ class Contact
         return $this;
     }
 
-
     public function getOther(): ?string
     {
         return $this->other;
@@ -89,6 +97,17 @@ class Contact
         return $this->lastName;
     }
 
+    public function setEmail(?string $email): Contact
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
     public function setTelephone(?string $telephone)
     {
         $this->telephone =  str_replace(' ', '', $telephone);
@@ -110,6 +129,29 @@ class Contact
     {
         return $this->message;
     }
+
+    public function setAdminMessage(?string $adminMessage): Contact
+    {
+        $this->adminMessage = $adminMessage;
+        return $this;
+    }
+
+    public function getAdminMessage(): ?string
+    {
+        return $this->adminMessage;
+    }
+
+    public function setAdminReplied(?int $replied): Contact
+    {
+        $this->adminReplied = $replied;
+        return $this;
+    }
+
+    public function getAdminReplied(): ? int
+    {
+        return $this->adminReplied;
+    }
+
 
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context, $payload)

@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-
+    {{ form_start(form, {'action': path('app_admin_contact'), method: 'POST'}) }}
+        <input type="hidden" name="contact_form[id]" value="{{ app.request.get('id') }}" />
+        {{ form_row(form.title, {disabled: true}) }}
+        {{ form_row(form.other, {disabled: true}) }}
+        {{ form_row(form.first_name, {disabled: true}) }}
+        {{ form_row(form.last_name, {disabled: true}) }}
+        {{ form_row(form.email, {disabled: true}) }}
+        {{ form_row(form.telephone, {disabled: true}) }}
+        {{ form_row(form.message, {disabled: true}) }}
+        {{ form_row(form.admin_message) }}
+        {{ form_row(form.submit, {label: 'Send Reply'}) }}
     {{ form_end(form) }}
 {% endblock %}

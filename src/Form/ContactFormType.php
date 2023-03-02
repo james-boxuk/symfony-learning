@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -69,6 +70,16 @@ class ContactFormType extends AbstractType
                     'placeholder' => 'What is your last name?',
                 ],
             ])
+            ->add('email', EmailType::class,[
+                'row_attr' => [
+                    'class' => 'col mb-2',
+                ],
+                'label' => 'Email',
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'What is your email address?',
+                ],
+            ])
             ->add('telephone', TextType::class, [
                 'row_attr' => [
                     'class' => 'col mb-2'
@@ -84,10 +95,19 @@ class ContactFormType extends AbstractType
                     'class' => 'col mb-2'
                 ],
                 'label' => 'Message',
-
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'What is your message?',
+                ],
+            ])
+            ->add('admin_message', TextareaType::class, [
+                'row_attr' => [
+                    'class' => 'col mb-2',
+                ],
+                'label' => 'Admin Reply',
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Admin Reply Message',
                 ],
             ])
             ->add('submit', SubmitType::class, [
@@ -99,10 +119,10 @@ class ContactFormType extends AbstractType
         ;
     }
 
-//    public function configureOptions(OptionsResolver $resolver): void
-//    {
-//        $resolver->setDefaults([
-//            'data_class' => Contact::class
-//        ]);
-//    }
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Contact::class
+        ]);
+    }
 }

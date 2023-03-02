@@ -27,3 +27,8 @@ app_about:
 app_view_contact:
     path: /view-contact-messages
     controller: App\Controller\ViewContactController::indexAction
+
+app_admin_contact:
+    path: /admin-contact-reply
+    controller: App\Controller\AdminReplyContactController::indexAction
+    methods: [POST]
