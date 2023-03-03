@@ -24,6 +24,7 @@ class ViewContactController extends AbstractController
     {
        $db = $this->entityManager->createQueryBuilder();
        $query = $db->select("c")
+           ->where('c.archivedDate is null')
            ->from(Contact::class, 'c');
 
         $paginator = new Paginator();

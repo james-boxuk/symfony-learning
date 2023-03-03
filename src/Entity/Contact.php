@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -41,6 +42,9 @@ class Contact
 
     #[ORM\Column(type: "integer", options: ["default" => 0])]
     private ?int $adminReplied = 0;
+
+    #[ORM\Column(type:"datetime", nullable: true)]
+    private ?DateTimeInterface $archivedDate = null;
 
     public function setId(?int $id)
     {
@@ -152,6 +156,16 @@ class Contact
         return $this->adminReplied;
     }
 
+    public function setArchivedDate(?DateTimeInterface $dateTime): Contact
+    {
+        $this->archivedDate = $dateTime;
+        return $this;
+    }
+
+    public function getArchivedDate(): ?DateTimeInterface
+    {
+        return $this->archivedDate;
+    }
 
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context, $payload)

@@ -9,7 +9,7 @@ app_contact:
     
 app_manage_contact:
     path: /manage-contact-message
-    controller: App\Controller\ManageContactController::index
+    controller: App\Controller\ManageContactController::indexAction
     methods: [GET]
 
 app_home:
@@ -27,4 +27,9 @@ app_view_contact:
 app_admin_contact:
     path: /admin-contact-reply
     controller: App\Controller\AdminReplyContactController::indexAction
+    methods: [POST]
+    
+app_archive_contact_message:
+    path: /archive-contact-message
+    controller: App\Controller\ManageContactController::archiveMessageAction
     methods: [POST]

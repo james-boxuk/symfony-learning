@@ -27,6 +27,9 @@
                 <td>
                     Admin Replied
                 </td>
+                <td>
+                    Actions
+                </td>
             </tr>
         </thead>
         <tbody>
@@ -58,8 +61,18 @@
                     <td>
                         {{ (contact.adminReplied == 1) ? "Yes" : 'No' }}
                     </td>
+                    <td>
+                        <form action="{{ path('app_archive_contact_message') }}" method="POST">
+                            <input type="hidden" name="contact_id" value="{{ contact.id }}">
+                            <button
+                                type="submit"
+                                class="btn btn-warning"
+                            >
+                                Archive Message
+                            </button>
+                        </form>
+                    </td>
                 </tr>
-
             {% endfor %}
         </tbody>
     </table>
