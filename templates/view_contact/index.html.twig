@@ -62,15 +62,17 @@
                         {{ (contact.adminReplied == 1) ? "Yes" : 'No' }}
                     </td>
                     <td>
-                        <form action="{{ path('app_archive_contact_message') }}" method="POST">
-                            <input type="hidden" name="contact_id" value="{{ contact.id }}">
-                            <button
-                                type="submit"
-                                class="btn btn-warning"
-                            >
-                                Archive Message
-                            </button>
-                        </form>
+                        {% if contact.adminReplied != 0 %}
+                            <form action="{{ path('app_archive_contact_message') }}" method="POST">
+                                <input type="hidden" name="contact_id" value="{{ contact.id }}">
+                                <button
+                                    type="submit"
+                                    class="btn btn-warning"
+                                >
+                                    Archive Message
+                                </button>
+                            </form>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
