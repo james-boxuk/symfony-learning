@@ -46,6 +46,9 @@ class Contact
     #[ORM\Column(type:"datetime", nullable: true)]
     private ?DateTimeInterface $archivedDate = null;
 
+    #[ORM\Column(type:"datetime", nullable: true)]
+    private ?DateTimeInterface $createdDate = null;
+
     public function setId(?int $id)
     {
         $this->id = $id;
@@ -165,6 +168,17 @@ class Contact
     public function getArchivedDate(): ?DateTimeInterface
     {
         return $this->archivedDate;
+    }
+
+    public function setCreatedDate(?DateTimeInterface $createdDate): Contact
+    {
+        $this->createdDate = $createdDate;
+        return $this;
+    }
+
+    public function getCreatedDate(): ?DateTimeInterface
+    {
+        return $this->createdDate;
     }
 
     #[Assert\Callback]

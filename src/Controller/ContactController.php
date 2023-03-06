@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Command\ContactCommand;
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,9 +27,12 @@ class ContactController extends AbstractController
 
     public function index(Request $request): Response
     {
+        $contact = new Contact();
+        $contact->setCreatedDate(new DateTimeImmutable());
+
         $form = $this->createForm(
             ContactFormType::class,
-            new Contact()
+            $contact
         );
 
         $form->handleRequest($request);
@@ -39,7 +43,7 @@ class ContactController extends AbstractController
                 $this->addFlash('error', $error->getMessage());
             }
 
-            //return $this->redirectToRoute('app_contact');
+            return $this->redirectToRoute('app_contact');
         }
 
 
