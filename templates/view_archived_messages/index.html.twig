@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% set id = 0 %}
+{% block body %}
+    <table class="table table-bordered">
+        <thead>
+        <tr class="text-center">
+            <td>
+                #
+            </td>
+            <td>
+                Title
+            </td>
+            <td>
+                First Name
+            </td>
+            <td>
+                Last Name
+            </td>
+            <td>
+                Email Address
+            </td>
+            <td>
+                Telephone
+            </td>
+            <td>
+                Message
+            </td>
+            <td>
+                Admin Replied
+            </td>
+            <td>
+                Actions
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for message in archivedMessaged %}
+            {% set id = id + 1 %}
+            <tr>
+                <td>
+                        <span class="">
+                            {{ id }}
+                        </span>
+                </td>
+                <td>
+                    {{ message.title|capitalize }}
+                </td>
+                <td>
+                    {{ message.firstName|capitalize }}
+                </td>
+                <td>
+                    {{ message.lastName|capitalize }}
+                </td>
+                <td>
+                    {{ message.email ?? 'No Email' }}
+                </td>
+                <td>
+                    {{ message.telephone }}
+                </td>
+                <td>
+                    {{ message.message }}
+                </td>
+                <td>
+                    {{ (message.adminReplied == 1) ? "Yes" : 'No' }}
+                </td>
+                <td>
+                    {% if delete_message(message.archivedDate) %}
+                        <form action="{{ path('app_delete_archived_message') }}" method="POST">
+                            <input type="hidden" name="message_id" value="{{ message.id }}">
+                            <button
+                                type="submit"
+                                class="btn btn-warning"
+                            >
+                                Delete Message
+                            </button>
+                        </form>
+                        {% else %}
+                            <div class="row">
+                                <span class="text-center">-</span>
+                            </div>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{#    {% include 'paginator/paginator.html.twig' %}#}
+{% endblock %}

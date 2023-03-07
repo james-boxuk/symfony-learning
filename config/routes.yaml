@@ -33,3 +33,12 @@ app_archive_contact_message:
     path: /archive-contact-message
     controller: App\Controller\ManageContactController::archiveMessageAction
     methods: [POST]
+
+app_view_archived_messages:
+    path: /view-archived-messages
+    controller: App\Controller\ViewArchivedMessagesController::indexAction
+    
+app_delete_archived_message:
+    path: /delete-archived-message
+    controller: App\Controller\DeleteArchivedMesssageController::deleteMessage
+    methods: [POST]

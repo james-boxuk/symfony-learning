@@ -38,7 +38,9 @@
                 {% set id = id + 1 %}
                 <tr>
                     <td>
-                        <span class="{{ message_reply(contact.createdDate) }}">{{ id }}</span>
+                        <span class="{{ message_reply(contact.createdDate) }}">
+                            {{ id }}
+                        </span>
                     </td>
                     <td>
                         {{ contact.title|capitalize }}
