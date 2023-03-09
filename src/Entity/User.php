@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,6 +22,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\Column(type:"datetime", nullable: true)]
+    private ?DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(type:"datetime", nullable: true)]
+    private ?DateTimeInterface $modifiedAt = null;
 
     /**
      * @var string The hashed password
@@ -95,5 +103,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setCreatedAt(?DateTimeInterface $createdAt): User
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setModifiedAt(?DateTimeInterface $modifiedAt): User
+    {
+        $this->modifiedAt = $modifiedAt;
+        return $this;
+    }
+
+    public function getModifiedAt(): ?DateTimeInterface
+    {
+        return $this->modifiedAt;
     }
 }

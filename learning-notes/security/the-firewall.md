@@ -48,3 +48,18 @@ The `lazy` key in the security.yaml file is used to prevent the session from bei
 started if there is no need for authorisation. This is important to keep requests cacheable.
 
 # Fetching the Firewall Configuration for a Request
+
+# Authenticating Users
+
+During authentication, the system tried to find a matching user for the visitor of the webpage.
+Traditionally, this was done using a login form or a http basic dialog in the browser.
+However, the SecurityBundle comes with many other authenticators:
+
+- <a href="https://symfony.com/doc/current/security.html#form-login">Form Login</a>
+- <a href="https://symfony.com/doc/current/security.html#json-login">JSON Login</a>
+- <a href="https://symfony.com/doc/current/security.html#http-basic">HTTP Basic</a>
+- <a href="https://symfony.com/doc/current/security.html#login-link">Login Link</a>
+- <a href="https://symfony.com/doc/current/security.html#x-509-client-certificates">X.509 Client Certificates</a>
+- <a href="https://symfony.com/doc/current/security.html#remote-users">Remote Users</a>
+- <a href="https://symfony.com/doc/current/security/custom_authenticator.html">Custom Authentication</a>
+

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <form action="{{ path('app_login') }}" method="POST">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="username">Email:</label>
+                            <input type="text" class="form-control"  id="username" name="_username" value="{{ last_username }}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="password">Password:</label>
+                            <input class="form-control" type="password" id="password" name="_password" />
+                        </div>
+                    </div>
+
+                    {#  if we want to redirect the user to somewhere else after login in   #}
+                    {#        <input type="hidden" name="_target_path" value="/account">#}
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
