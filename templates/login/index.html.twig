@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col-6 mx-auto">
                 <form action="{{ path('app_login') }}" method="POST">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
                     <div class="row">
                         <div class="col mb-3">
                             <label for="username">Email:</label>
@@ -25,7 +26,7 @@
                     </div>
 
                     {#  if we want to redirect the user to somewhere else after login in   #}
-                    {#        <input type="hidden" name="_target_path" value="/account">#}
+                    <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
                     <button class="btn btn-primary" type="submit">Login</button>
                 </form>
             </div>
