@@ -40,12 +40,14 @@ class ManageContactController extends AbstractController
             return $this->redirectToRoute('app_view_contact');
         }
 
+        $contactDetails->setIsAdminUser(true);
         $form = $this->createForm(ContactFormType::class, $contactDetails);
 
         return $this->render('manage_contact/index.html.twig', [
             'title' => 'Manage Contact',
             'form' => $form->createView(),
             'adminReplied' => $contactDetails->getAdminReplied(),
+            'admin_user' => $contactDetails->getIsAdminUser(),
         ]);
     }
 

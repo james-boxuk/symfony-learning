@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% set row_attr = {class: 'testing-class' } %}
+{% set admin_reply = admin_reply|default(false) %}
 {% block body %}
         {{ form_start(form, {'action': path('app_contact')}) }}
             {{ form_row(form.title) }}
@@ -9,6 +10,9 @@
             {{ form_row(form.email) }}
             {{ form_row(form.telephone) }}
             {{ form_row(form.message) }}
+            {% if admin_reply %}
+                {{ form_row(form.admin_message) }}
+            {% endif %}
             {{ form_row(form.submit) }}
-        {{ form_end(form, {render_rest: false}) }}
+        {{ form_end(form) }}
 {% endblock %}

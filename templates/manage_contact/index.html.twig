@@ -10,8 +10,9 @@
         {{ form_row(form.email, {disabled: true}) }}
         {{ form_row(form.telephone, {disabled: true}) }}
         {{ form_row(form.message, {disabled: true}) }}
-        {{ form_row(form.admin_message, {disabled: adminReplied ? 'disabled' : ''}) }}
-
+        {% if admin_user %}
+            {{ form_row(form.admin_message, {disabled: adminReplied ? 'disabled' : ''}) }}
+        {% endif %}
         {% if adminReplied != 1 %}
             {{ form_row(form.submit, {label: 'Send Reply'}) }}
         {% else %}

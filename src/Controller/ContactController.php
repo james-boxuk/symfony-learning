@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Command\ContactCommand;
 use App\Entity\Contact;
 use App\Form\ContactFormType;
 use DateTimeImmutable;

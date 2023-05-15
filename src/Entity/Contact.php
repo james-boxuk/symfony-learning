@@ -48,6 +48,7 @@ class Contact
 
     #[ORM\Column(type:"datetime", nullable: true)]
     private ?DateTimeInterface $createdDate = null;
+    private bool $isAdminUser;
 
     public function setId(?int $id)
     {
@@ -135,6 +136,17 @@ class Contact
     public function getMessage(): ?string
     {
         return $this->message;
+    }
+
+    public function setIsAdminUser(bool $isAdminUser = false): Contact
+    {
+        $this->isAdminUser = $isAdminUser;
+        return $this;
+    }
+
+    public function getIsAdminUser(): bool
+    {
+        return $this->isAdminUser;
     }
 
     public function setAdminMessage(?string $adminMessage): Contact

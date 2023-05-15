@@ -16,6 +16,8 @@ class ContactFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $isAdmin = $builder->getData()->getIsAdminUser();
+
         $builder
             ->add('title', ChoiceType::class, [
                 'attr' => [
@@ -99,18 +101,23 @@ class ContactFormType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'What is your message?',
                 ],
-            ])
-            ->add('admin_message', TextareaType::class, [
-                'row_attr' => [
-                    'class' => 'col mb-2',
-                ],
-                'label' => 'Admin Reply',
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Admin Reply Message',
-                ],
-            ])
-            ->add('submit', SubmitType::class, [
+            ]);
+
+
+            if ($isAdmin) {
+                $builder->add('admin_message', TextareaType::class, [
+                    'row_attr' => [
+                        'class' => 'col mb-2',
+                    ],
+                    'label' => 'Admin Reply',
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Admin Reply Message',
+                    ],
+                ]);
+            }
+
+            $builder->add('submit', SubmitType::class, [
                 'label' => 'Send',
                 'attr' => [
                     'class' => 'btn btn-primary'
