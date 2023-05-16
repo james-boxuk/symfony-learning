@@ -47,3 +47,8 @@ app_login:
     path: /login
     controller: App\Controller\LoginController::indexAction
     methods: [GET,POST]
+    
+app_logout:
+    path: /logout
+    controller: App\Controller\LogoutController::logout
+    methods: [GET]

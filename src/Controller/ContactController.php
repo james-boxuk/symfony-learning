@@ -27,6 +27,7 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $contact = new Contact();
+        $contact->setIsAdminUser(false);
         $contact->setCreatedDate(new DateTimeImmutable());
 
         $form = $this->createForm(
