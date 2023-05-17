@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Sign Up' %}
+{% block body %}
+    {{ form(form, { action: path('app_sign_up'), method: 'POST'} ) }}
+{% endblock %}

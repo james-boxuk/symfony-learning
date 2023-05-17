@@ -42,6 +42,11 @@ app_delete_archived_message:
     path: /delete-archived-message
     controller: App\Controller\DeleteArchivedMesssageController::deleteMessage
     methods: [POST]
+    
+app_sign_up:
+    path: /sign-up
+    controller: App\Controller\SignUpController::indexAction
+    methods: [POST, GET]
 
 app_login:
     path: /login
