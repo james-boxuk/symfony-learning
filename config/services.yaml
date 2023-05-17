@@ -19,6 +19,10 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    app.signup_command_handler:
+        class: 'App\SignUp\SignUpController'
+        arguments:
+            - 'app.object_persister'
     app.object_persister:
         class: 'App\Services\ObjectPersisterService'
         arguments: 
