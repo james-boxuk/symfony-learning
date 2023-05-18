@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LogoutController extends AbstractController
 {
+    public function __construct(
+
+    ){}
+
     public function logout(Security $security): Response
     {
         //by calling the logout route, symfony will automatically un-authenticate the user
