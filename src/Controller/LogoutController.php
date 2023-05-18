@@ -12,6 +12,7 @@ class LogoutController extends AbstractController
     {
         //by calling the logout route, symfony will automatically un-authenticate the user
         $response = $security->logout(false);
+        $this->addFlash('success', 'You are now logged out.');
         return $this->redirectToRoute('app_home');
     }
 }
