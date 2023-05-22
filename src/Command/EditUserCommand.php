@@ -16,6 +16,6 @@ class EditUserCommand
     public function handle(int $userId): User
     {
         $user = $this->userRepository->findBy(['id' => $userId]);
-        return array_pop($user);
+        return array_shift($user);
     }
 }
