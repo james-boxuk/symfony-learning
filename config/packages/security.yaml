@@ -10,20 +10,17 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
-#        secured_area:
-#            form_login:
-#                enable_csrf: true
-#                login_path: app_login
-#                check_path: app_login
+        secured_area:
+            form_login:
+                enable_csrf: true
+                login_path: app_login
+                check_path: app_login
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
             provider: app_user_provider
-            form_login:
-                login_path: app_login
-                check_path: app_login
 #            can use the bottom key if you want symfony to logout automatically
 #            logout:
 #                path: app_logout
