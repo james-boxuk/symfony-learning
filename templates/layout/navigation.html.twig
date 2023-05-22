@@ -11,6 +11,7 @@
         <a href="{{ path('app_login') }}" class="btn btn-outline-primary me-2">Login</a>
         <a href="{{ path('app_sign_up') }}" class="btn btn-primary">Sign-up</a>
     {% else %}
+        <a href="{{ path('app_edit_account', { user_id: app.user.getId() }) }}" class="btn btn-outline-primary me-2">Edit Account</a>
         <a href="{{ path('app_logout') }}" class="btn btn-outline-danger me-2">Logout</a>
     {% endif %}
 </div>

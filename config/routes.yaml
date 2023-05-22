@@ -48,6 +48,16 @@ app_sign_up:
     controller: App\Controller\SignUpController::indexAction
     methods: [POST, GET]
 
+app_edit_account:
+    path: /edit-account/{user_id}
+    controller: App\Controller\EditAccountController::editAction
+    methods: [POST, GET]
+
+app_change_password:
+    path: /edit-account/{user_id}/change-password
+    controller: App\Controller\ChangePasswordController::changeAction
+    methods: [GET, POST]
+
 app_login:
     path: /login
     controller: App\Controller\LoginController::indexAction

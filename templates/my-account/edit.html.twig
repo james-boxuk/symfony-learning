@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Edit My Account' %}
+{% set userId = app.user.getId() %}
+{% block body %}
+    {{ form_start(form, { action: path('app_edit_account', { user_id: userId }), method: 'POST' }) }}
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name ) }}
+        {{ form_row(form.email ) }}
+        <div class="row">
+            <div class="col mt-2">
+                <a href="{{ path('app_change_password', {user_id: userId}) }}" class="btn btn-outline-info">Change Password</a>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

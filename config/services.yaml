@@ -27,5 +27,9 @@ services:
         class: 'App\Services\ObjectPersisterService'
         arguments: 
             - '@doctrine.orm.entity_manager'
+    app.edit_user_command:
+        class: 'App\Command\EditUserCommand'
+        arguments:
+            - 'App\Repository\UserRepository'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
