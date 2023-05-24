@@ -15,20 +15,20 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('first_name', TextType::class,[
-                'row_attr' => ['class' => 'col'],
+                'row_attr' => ['class' => 'col mb-2'],
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('last_name', TextType::class, [
-                'row_attr' => ['class' => 'col'],
+                'row_attr' => ['class' => 'col mb-2'],
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('email', EmailType::class, [
-                'row_attr' => ['class' => 'col'],
-                'attr' => ['class' => 'form-control'],
+                'row_attr' => ['class' => 'col mb-2'],
+                'attr' => ['class' => 'form-control', 'disabled' => true],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Update Account',
-                'row_attr' => ['class' => 'col mt-2'],
+                'row_attr' => ['class' => 'col mt-3'],
                 'attr' => ['class' => 'btn btn-primary'],
             ])
         ;
