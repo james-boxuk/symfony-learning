@@ -29,6 +29,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column(type: 'string', length: 6, nullable: true)]
+    private ?string $oneTimePin = null;
+
     #[ORM\Column(type:"datetime", nullable: true)]
     private ?DateTimeInterface $createdAt = null;
 
@@ -78,6 +81,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function setOneTimePin(string $pin): self
+    {
+        $this->oneTimePin = $pin;
+        return $this;
+    }
+
+    public function getOneTimePin(): string|null
+    {
+        return $this->oneTimePin;
     }
 
     /**

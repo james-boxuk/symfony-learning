@@ -58,6 +58,11 @@ app_change_password:
     controller: App\Controller\ChangePasswordController::changeAction
     methods: [GET, POST]
 
+app_change_user_password:
+    path: /change-user-password/{user_id}
+    controller: App\Controller\ChangeUserPasswordController::changeAction
+    methods: [GET, POST]
+
 app_login:
     path: /login
     controller: App\Controller\LoginController::indexAction
