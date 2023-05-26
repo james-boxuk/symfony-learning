@@ -5,6 +5,8 @@ namespace App\Command;
 use App\Contracts\DoctrineObjectPersister\ObjectPersisterInterface;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use InvalidArgumentException;
+use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -19,7 +21,7 @@ class ChangePasswordCommand
         private ObjectPersisterInterface $persister
     ){}
 
-    public function handle(int $userId): User
+    public function handle(int $userId): User|string
     {
         $user = $this->repository->findBy(['id' => $userId]);
         $user = array_shift($user);
@@ -28,17 +30,38 @@ class ChangePasswordCommand
         $this->persister->persist($user);
         $this->persister->flush();
 
+        try {
+            $toEmail = null;
+
+            if (in_array($_ENV['APP_ENV'],['dev', 'preprod'])) {
+                $toEmail = $_ENV['TESTING_EMAIL'];
+            } else {
+                $toEmail = $user->getEmail();
+            }
+
+            if (is_null($toEmail) || empty($toEmail)) {
+                throw new InvalidArgumentException('A valid email is required');
+            }
+
+        } catch (InvalidArgumentException $e) {
+            throw new Exception($e->getMessage());
+        }
+
         $email =  (new TemplatedEmail())
             ->from('admin@symfony-learning.co.uk')
-            ->to($_SERVER['TESTING_EMAIL'])
+            ->to($toEmail)
             ->subject('Password Change Requested')
-            ->context(['user_id' => $user->getId(), 'one_time_pin' => $user->getOneTimePin()])
+            ->context([
+                'user_id' => $user->getId(),
+                'one_time_pin' => $user->getOneTimePin()
+            ])
             ->htmlTemplate('email-templates/change-password.html.twig');
 
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            $this->logger->log(level: 100, message: $e->getMessage());
+            $this->logger->error(message: $e->getMessage());
+            throw new Exception('We could not reset your password this time, please check in 10 minutes.');
         }
 
         return $user;

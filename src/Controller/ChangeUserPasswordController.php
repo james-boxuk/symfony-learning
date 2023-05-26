@@ -12,7 +12,7 @@ class ChangeUserPasswordController extends AbstractController
     {
         $oneTimePin = $request->get('one_time_pin');
         $userId = $request->get('user_id');
-
+        
         dd($oneTimePin, $userId);
         return $this->render('change_user_password/index.html.twig', [
 
