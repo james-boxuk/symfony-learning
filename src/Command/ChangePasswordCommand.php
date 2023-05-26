@@ -40,7 +40,9 @@ class ChangePasswordCommand
             }
 
             if (is_null($toEmail) || empty($toEmail)) {
-                throw new InvalidArgumentException('A valid email is required');
+                throw new InvalidArgumentException(
+                    'Technical Error has occurred. Make sure an email is present or one is set'
+                );
             }
 
         } catch (InvalidArgumentException $e) {
@@ -66,6 +68,4 @@ class ChangePasswordCommand
 
         return $user;
     }
-
-
 }

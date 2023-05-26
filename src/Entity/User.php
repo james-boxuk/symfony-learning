@@ -83,7 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function setOneTimePin(string $pin): self
+    public function setOneTimePin(?string $pin): self
     {
         $this->oneTimePin = $pin;
         return $this;

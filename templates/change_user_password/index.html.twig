@@ -1,19 +1,7 @@
 {% extends 'base.html.twig' %}
 {% set title = 'Change Password with a one time pin' %}
 {% block body %}
-    <form action="{{ path('app_change_user_password', {user_id: app.user.getId()}) }}" method="POST">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <label>Please enter your one time pin: </label>
-                    <input type="text" name="one_time_pin" value="" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </div>
-    </form>
+    {{ form_start(form, { method: 'POST', action: path('app_change_user_password', {user_id: app.user.getId()})}) }}
+        {{ form_row(form.one_time_pin) }}
+    {{ form_end(form) }}
 {% endblock %}
