@@ -21,9 +21,9 @@ class AllowUserToChangePasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->allowPasswordChangeCommand->handle($request);
             $this->addFlash('success', 'Password updated successfully');
+
             return $this->redirectToRoute('app_edit_account', ['user_id' => $request->get('user_id')]);
         }
 
